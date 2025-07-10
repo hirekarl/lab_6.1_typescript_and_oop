@@ -1,4 +1,4 @@
-import { DiscountableProduct } from "./DiscountableProduct"
+import { DiscountableProduct } from "../interfaces/DiscountableProduct"
 
 const DEFAULT_TAX_RATE = 0.08875 // NYC sales tax rate
 
