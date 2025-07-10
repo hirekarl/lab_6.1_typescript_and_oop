@@ -11,7 +11,7 @@
 In the terminal, run:
 
 ```bash
-npm run build && npm run start
+cd inventory-tracker && npm run build && npm run start
 ```
 
 ### Submission Source
