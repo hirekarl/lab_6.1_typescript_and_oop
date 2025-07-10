@@ -2,8 +2,8 @@ import Product from "./Product"
 import PhysicalProductType from "../types/PhysicalProductType"
 import SKUType from "../types/SKUType"
 
-const BULK_DISCOUNT_WEIGHT_THRESHOLD = 100 // Pounds (lbs)
-const BULK_DISCOUNT_RATE = 0.25
+const BULK_DISCOUNT_WEIGHT_THRESHOLD: number = 100 // Pounds (lbs)
+const BULK_DISCOUNT_RATE: number = 0.25
 const PHYSICAL_PRODUCT_TAX_RATE: number = 0.1
 const POUNDS_PER_KG: number = 0.45359237 // https://www.unitconverters.net/weight-and-mass/lbs-to-kg.htm
 
@@ -25,7 +25,9 @@ class PhysicalProduct extends Product implements PhysicalProductType {
       this.weight >= BULK_DISCOUNT_WEIGHT_THRESHOLD
 
     const bulkDiscountMessage = qualifiesForBulkDiscount
-      ? `: BULK DISCOUNT APPLIED! (weight >${BULK_DISCOUNT_WEIGHT_THRESHOLD} lbs)`
+      ? `: ${
+          BULK_DISCOUNT_RATE * 100
+        }% BULK DISCOUNT APPLIED! (weight >${BULK_DISCOUNT_WEIGHT_THRESHOLD} lbs)`
       : ""
 
     return `${super.displayDetails()} (${
