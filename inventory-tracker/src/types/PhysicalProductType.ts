@@ -1,8 +1,8 @@
 import ProductType from "./ProductType"
-import DiscountableProductInterface from "./DiscountableProductInterface"
+import DiscountableProduct from "./DiscountableProduct"
 
 type PhysicalProductType = ProductType &
-  DiscountableProductInterface & {
+  DiscountableProduct & {
     getWeightInKg(): number
   }
 
