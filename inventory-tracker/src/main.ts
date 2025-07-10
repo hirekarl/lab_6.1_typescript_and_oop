@@ -27,11 +27,22 @@ function main() {
   )
   discountedFidgetSpinner.applyDiscount(0.1)
 
+  const heavyFidgetSpinner = new PhysicalProduct(
+    "FGT-003",
+    "Heavy Fidget Spinner",
+    419.99,
+    149.75
+  )
+
   productList.addProduct(fidgetSpinner)
   productList.addProduct(fortniteSkin)
   productList.addProduct(discountedFidgetSpinner)
+  productList.addProduct(heavyFidgetSpinner)
 
   productList.sort()
+
+  console.log("Products in order of price, ascending:")
+  console.log()
 
   productList.items.forEach((product) => {
     console.log(product.displayDetails())
