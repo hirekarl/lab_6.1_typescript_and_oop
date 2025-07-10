@@ -1,14 +1,14 @@
-import { Product } from "./Product"
-import { DiscountableProduct } from "../types/DiscountableProduct"
-import { SKU } from "../types/SKU"
+import Product from "./Product"
+import PhysicalProductType from "../types/PhysicalProductType"
+import SKUType from "../types/SKUType"
 
 const PHYSICAL_PRODUCT_TAX_RATE: number = 0.1
 const POUNDS_PER_KG: number = 0.45359237 // https://www.unitconverters.net/weight-and-mass/lbs-to-kg.htm
 
-export class PhysicalProduct extends Product implements DiscountableProduct {
+class PhysicalProduct extends Product implements PhysicalProductType {
   private weight: number // Pounds (lbs)
 
-  constructor(sku: SKU, name: string, price: number, weight: number) {
+  constructor(sku: SKUType, name: string, price: number, weight: number) {
     super(sku, name, price)
     this.weight = weight
     this.taxRate = PHYSICAL_PRODUCT_TAX_RATE
@@ -33,3 +33,5 @@ export class PhysicalProduct extends Product implements DiscountableProduct {
     this.price = this.price - this.price * discount
   }
 }
+
+export default PhysicalProduct

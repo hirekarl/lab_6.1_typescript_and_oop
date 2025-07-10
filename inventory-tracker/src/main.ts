@@ -1,5 +1,6 @@
-import { PhysicalProduct } from "./models/PhysicalProduct"
-import { DigitalProduct } from "./models/DigitalProduct"
+import PhysicalProduct from "./models/PhysicalProduct"
+import DigitalProduct from "./models/DigitalProduct"
+import productList from "./singletons/productList"
 
 main()
 
@@ -26,9 +27,13 @@ function main() {
   )
   discountedFidgetSpinner.applyDiscount(0.1)
 
-  const allProducts = [fidgetSpinner, fortniteSkin, discountedFidgetSpinner]
+  productList.addProduct(fidgetSpinner)
+  productList.addProduct(fortniteSkin)
+  productList.addProduct(discountedFidgetSpinner)
 
-  allProducts.forEach((product) => {
+  productList.sort()
+
+  productList.items.forEach((product) => {
     console.log(product.displayDetails())
     console.log(
       `\u{21b3} Price with tax (${product.displayTaxRate()}): $${product.getPriceWithTax()}`

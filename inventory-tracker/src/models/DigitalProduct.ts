@@ -1,13 +1,14 @@
-import { Product } from "./Product"
-import { SKU } from "../types/SKU"
+import Product from "./Product"
+import DigitalProductType from "../types/DigitalProductType"
+import SKUType from "../types/SKUType"
 
 const DIGITAL_PRODUCT_TAX_RATE: number = 0
 const BYTES_PER_MB: number = 1000
 
-export class DigitalProduct extends Product {
+class DigitalProduct extends Product implements DigitalProductType {
   private fileSize: number // Bytes (B)
 
-  constructor(sku: SKU, name: string, price: number, fileSize: number) {
+  constructor(sku: SKUType, name: string, price: number, fileSize: number) {
     super(sku, name, price)
     this.fileSize = fileSize
     this.taxRate = DIGITAL_PRODUCT_TAX_RATE
@@ -27,3 +28,5 @@ export class DigitalProduct extends Product {
     return this.fileSize / BYTES_PER_MB
   }
 }
+
+export default DigitalProduct
