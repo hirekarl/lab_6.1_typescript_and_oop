@@ -1,15 +1,16 @@
 import { calculateTax } from "../utils/taxCalculator"
+import { SKU } from "../types/SKU"
 
 const DEFAULT_TAX_RATE: number = 0.08875 // NYC sales tax rate
 
 export class Product {
-  private sku: string
+  private sku: SKU
   private name: string
   protected price: number
   protected taxRate: number
 
   constructor(
-    sku: string,
+    sku: SKU,
     name: string,
     price: number,
     taxRate: number = DEFAULT_TAX_RATE
