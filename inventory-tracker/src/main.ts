@@ -1,6 +1,7 @@
 import { PhysicalProduct } from "./models/PhysicalProduct"
 import { DigitalProduct } from "./models/DigitalProduct"
-import { calculateTax } from "./utils/taxCalculator"
+
+main()
 
 function main() {
   const fidgetSpinner = new PhysicalProduct(
@@ -17,12 +18,21 @@ function main() {
     2048
   )
 
-  const allProducts = [fidgetSpinner, fortniteSkin]
+  const discountedFidgetSpinner = new PhysicalProduct(
+    "FGT-002",
+    "Discounted Fidget Spinner, 10% off",
+    12.99,
+    0.25
+  )
+  discountedFidgetSpinner.applyDiscount(0.1)
+
+  const allProducts = [fidgetSpinner, fortniteSkin, discountedFidgetSpinner]
 
   allProducts.forEach((product) => {
     console.log(product.displayDetails())
-    console.log(`Price with tax: $${calculateTax(product)}`)
+    console.log(
+      `\u{21b3} Price with tax (${product.displayTaxRate()}): $${product.getPriceWithTax()}`
+    )
+    console.log()
   })
 }
-
-main()

@@ -1,29 +1,46 @@
-import { DiscountableProduct } from "../interfaces/DiscountableProduct"
+import { calculateTax } from "../utils/taxCalculator"
 
-const DEFAULT_TAX_RATE = 0.08875 // NYC sales tax rate
+const DEFAULT_TAX_RATE: number = 0.08875 // NYC sales tax rate
 
-export class Product implements DiscountableProduct {
+export class Product {
   private sku: string
   private name: string
-  private price: number
+  protected price: number
+  protected taxRate: number
 
-  constructor(sku: string, name: string, price: number) {
+  constructor(
+    sku: string,
+    name: string,
+    price: number,
+    taxRate: number = DEFAULT_TAX_RATE
+  ) {
     this.sku = sku
     this.name = name
     this.price = price
+    this.taxRate = taxRate
   }
 
   displayDetails(): string {
-    return `${this.name} (${this.sku}): $${this.price.toFixed(2)}`
+    return `${this.name} (SKU #${this.sku}): $${Math.round(this.price * 100) / 100}`
   }
 
-  getPriceWithTax(taxRate: number = DEFAULT_TAX_RATE): number {
-    const priceWithTax = this.price * (1 + taxRate)
-    return parseFloat(priceWithTax.toFixed(2))
+  displayTaxRate(): string {
+    return `${this.taxRate * 100}%`
   }
 
-  applyDiscount(discount: number): void {
-    // Expects `discount` to be a percentage; e.g., 10% off -> 0.1
-    this.price = this.price - this.price * discount
+ 
+  getPrice(): number {
+    return this.price
+  }
+
+ 
+  getPriceWithTax(): number {
+    const tax = calculateTax(this)
+    return Math.round((this.price + tax) * 100) / 100
+  }
+
+ 
+  getTaxRate(): number {
+    return this.taxRate
   }
 }
