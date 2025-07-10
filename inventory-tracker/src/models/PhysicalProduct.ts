@@ -8,7 +8,6 @@ export class PhysicalProduct extends Product {
 
   constructor(sku: string, name: string, price: number, weight: number) {
     super(sku, name, price)
-
     this.weight = weight
   }
 
@@ -20,7 +19,7 @@ export class PhysicalProduct extends Product {
     return super.getPriceWithTax(PHYSICAL_PRODUCT_TAX_RATE)
   }
 
-  getWeightInKg() {
+  getWeightInKg(): number {
     return this.weight * POUNDS_PER_KG
   }
 }

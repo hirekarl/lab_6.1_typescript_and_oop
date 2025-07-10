@@ -1,6 +1,8 @@
+import { DiscountableProduct } from "./DiscountableProduct"
+
 const DEFAULT_TAX_RATE = 0.08875 // NYC sales tax rate
 
-export class Product {
+export class Product implements DiscountableProduct {
   private sku: string
   private name: string
   private price: number
@@ -18,5 +20,10 @@ export class Product {
   getPriceWithTax(taxRate: number = DEFAULT_TAX_RATE): number {
     const priceWithTax = this.price * (1 + taxRate)
     return parseFloat(priceWithTax.toFixed(2))
+  }
+
+  applyDiscount(discount: number): void {
+    // Expects `discount` to be a percentage; e.g., 10% off -> 0.1
+    this.price = this.price - this.price * discount
   }
 }
